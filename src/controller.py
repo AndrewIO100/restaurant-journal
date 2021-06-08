@@ -2,10 +2,10 @@ import random
 
 import requests
 
-
-def foo():
-    url = "https://api.yelp.com/v3/businesses/search?term=Chinese takeout&location=Ames, Iowa"
-    headers = {"Authorization": "Bearer dP7ema0d4sMqlW7K-nbZkjwLGrRwGp-26M-FyEtVzacEqFV8Pn3VG_VuhL-NZUshSRT0ZtJhLvlixb53M_fCZ8-xztkAmmbwS1YpOSgKqaGn2xOONrpk02KRQhG4YHYx"}
+API_KEY = "dP7ema0d4sMqlW7K-nbZkjwLGrRwGp-26M-FyEtVzacEqFV8Pn3VG_VuhL-NZUshSRT0ZtJhLvlixb53M_fCZ8-xztkAmmbwS1YpOSgKqaGn2xOONrpk02KRQhG4YHYx"
+def restaurant_chooser(term, location):
+    url = f"https://api.yelp.com/v3/businesses/search?term={term}&location={location}"
+    headers = {"Authorization": f"Bearer {API_KEY}"}
     r = requests.get(url, headers=headers)
 
     # list of restaurants from Yelp API

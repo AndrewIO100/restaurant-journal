@@ -1,7 +1,6 @@
 from chalice import Chalice
 
-# from controller import foo
-from src.controller import foo
+from src.controller import restaurant_chooser
 
 app = Chalice(app_name='restaurant-journal')
 
@@ -11,10 +10,9 @@ def index():
     return {'hello': 'world'}
 
 
-@app.route('/project')
-def index2():
-    tmp = foo()
-    return tmp
+@app.route('/random-restaurant/{term}/{location}')
+def random_restaurant(term, location):
+    return restaurant_chooser(term, location)
 
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.
