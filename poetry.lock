@@ -34,8 +34,21 @@ six = ">=1.9.0"
 wcwidth = ">=0.1.4"
 
 [[package]]
+name = "boto3"
+version = "1.17.90"
+description = "The AWS SDK for Python"
+category = "main"
+optional = false
+python-versions = ">= 2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[package.dependencies]
+botocore = ">=1.20.90,<1.21.0"
+jmespath = ">=0.7.1,<1.0.0"
+s3transfer = ">=0.4.0,<0.5.0"
+
+[[package]]
 name = "botocore"
-version = "1.20.87"
+version = "1.20.90"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -197,6 +210,20 @@ security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
+name = "s3transfer"
+version = "0.4.2"
+description = "An Amazon S3 Transfer Manager"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+botocore = ">=1.12.36,<2.0a.0"
+
+[package.extras]
+crt = ["botocore[crt] (>=1.20.29,<2.0a.0)"]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -228,7 +255,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5bf41a823200807cfa40341374a6fb3bf80ef44ac9510c273a7a54d60020d4c0"
+content-hash = "92accf8f6af6814ef1fee719da6542adc5a41be77d4df2fa5e8b92d8e0466c32"
 
 [metadata.files]
 ansicon = [
@@ -243,9 +270,13 @@ blessed = [
     {file = "blessed-1.17.6-py2.py3-none-any.whl", hash = "sha256:8371d69ac55558e4b1591964873d6721136e9ea17a730aeb3add7d27761b134b"},
     {file = "blessed-1.17.6.tar.gz", hash = "sha256:a9a774fc6eda05248735b0d86e866d640ca2fef26038878f7e4d23f7749a1e40"},
 ]
+boto3 = [
+    {file = "boto3-1.17.90-py2.py3-none-any.whl", hash = "sha256:2ade860f66fa6b9a9886d7ff2e5118e5efebc4807b863ef735d358ef730234ed"},
+    {file = "boto3-1.17.90.tar.gz", hash = "sha256:bbf727d770a9844834bfbf3f811db1d3438320897f67cfb21cdca5bb8fc23c13"},
+]
 botocore = [
-    {file = "botocore-1.20.87-py2.py3-none-any.whl", hash = "sha256:3dcc84855349073e0cb706e90a9e1180899deded4b8555698fb4a5a5b3357202"},
-    {file = "botocore-1.20.87.tar.gz", hash = "sha256:04a5594ae1886233cb15ab636b51aeecf6b5412231f72744405f11a54a8cda58"},
+    {file = "botocore-1.20.90-py2.py3-none-any.whl", hash = "sha256:6ae4ff3405cc4fc69ff3673a8dd234bf869aa556ae1e0da050d7f2aa3c3edab6"},
+    {file = "botocore-1.20.90.tar.gz", hash = "sha256:b301810c4bd6cab1b6eaf6bfd9f25abb27959b586c2e1689bbce035b3fb8ae66"},
 ]
 certifi = [
     {file = "certifi-2021.5.30-py2.py3-none-any.whl", hash = "sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8"},
@@ -332,6 +363,10 @@ readchar = [
 requests = [
     {file = "requests-2.25.1-py2.py3-none-any.whl", hash = "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"},
     {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
+]
+s3transfer = [
+    {file = "s3transfer-0.4.2-py2.py3-none-any.whl", hash = "sha256:9b3752887a2880690ce628bc263d6d13a3864083aeacff4890c1c9839a5eb0bc"},
+    {file = "s3transfer-0.4.2.tar.gz", hash = "sha256:cb022f4b16551edebbb31a377d3f09600dbada7363d8c5db7976e7f47732e1b2"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
