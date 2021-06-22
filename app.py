@@ -1,6 +1,5 @@
 import random
 import uuid
-
 import boto3
 import requests
 from boto3.dynamodb.conditions import Key
@@ -17,12 +16,13 @@ def index():
 # Endpoint chooses a random restaurant from the parameters given,
 # term = Type of food. eg.Chinese, Italian, American, etc
 # location = City, State
-@app.route('/random-restaurant/{term}/{location}')
+@app.route('/random-restaurant/{term}/{location}', methods=['GET'], cors=True)
 def random_restaurant(term, location):
-    return restaurant_chooser(term, location)
+    api_key = app.current_request.headers.get('x-apikey')
+    return restaurant_chooser(term, location, api_key)
 
 
-@app.route('/create_review', methods=['POST'])
+@app.route('/create_review', methods=['POST'], cors=True)
 def review_restaurant():
     # This is the JSON body the user sent in their POST request.
     review = app.current_request.json_body
@@ -30,31 +30,28 @@ def review_restaurant():
 
 
 # Endpoint that gets the user reviews
-@app.route('/get_reviews', methods=['GET'])
+@app.route('/get_reviews', methods=['GET'], cors=True)
 def get_restaurant_reviews():
     return dynamo_retrieve_reviews()
 
 #PLANNER Endpoints
-@app.route('/create_planner', methods=['POST'])
+@app.route('/create_planner', methods=['POST'], cors=True)
 def planner_restaurant():
     # This is the JSON body the user sent in their POST request.
     review = app.current_request.json_body
     return dynamo_create_planner(review)
 
 # Endpoint that gets the user reviews
-@app.route('/get_plans', methods=['GET'])
+@app.route('/get_plans', methods=['GET'], cors=True)
 def get_restaurant_planner():
     return dynamo_retrieve_planner()
 
 # CONTROLLER METHODS
 
 
-API_KEY = "dP7ema0d4sMqlW7K-nbZkjwLGrRwGp-26M-FyEtVzacEqFV8Pn3VG_VuhL-NZUshSRT0ZtJhLvlixb53M_fCZ8-xztkAmmbwS1YpOSgKqaGn2xOONrpk02KRQhG4YHYx"
-
-
-def restaurant_chooser(term, location):
+def restaurant_chooser(term, location, api_key):
     url = f"https://api.yelp.com/v3/businesses/search?term={term}&location={location}"
-    headers = {"Authorization": f"Bearer {API_KEY}"}
+    headers = {"Authorization": f"Bearer {api_key}"}
     r = requests.get(url, headers=headers)
 
     # list of restaurants from Yelp API
