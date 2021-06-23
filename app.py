@@ -16,9 +16,8 @@ def index():
 # Endpoint chooses a random restaurant from the parameters given,
 # term = Type of food. eg.Chinese, Italian, American, etc
 # location = City, State
-@app.route('/random-restaurant/{term}/{location}', methods=['GET'], cors=True)
-def random_restaurant(term, location):
-    api_key = app.current_request.headers.get('x-apikey')
+@app.route('/random-restaurant/{term}/{location}/{api_key}', methods=['GET'], cors=True)
+def random_restaurant(term, location, api_key):
     return restaurant_chooser(term, location, api_key)
 
 
